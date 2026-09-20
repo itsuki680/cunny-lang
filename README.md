@@ -47,13 +47,13 @@ cunny --version
 Run a program with:
 
 ```sh
-cunny examples/a.cunny
+cunny examples/helloworld.cunny
 ```
 
 Run it with the Imouto debugger to trace every instruction and tape state:
 
 ```sh
-cunny --imouto examples/a.cunny
+cunny --imouto examples/helloworld.cunny
 ```
 
 The echo example reads and writes one byte:
