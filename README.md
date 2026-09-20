@@ -62,6 +62,35 @@ The echo example reads and writes one byte:
 printf Z | cunny examples/echo.cunny
 ```
 
+## Run Bad Apple!!
+
+`examples/bad-apple.cunny` is a 3,287-frame terminal animation paired with
+`examples/bad-apple.m4a`. The program itself contains only Cunny tokens and
+whitespace. Use a terminal at least 60 columns by 22 rows and run:
+
+```sh
+cunny examples/bad-apple.cunny
+```
+
+The runner recognizes this example, starts its audio track, and displays its
+frame markers on a 15-frames-per-second clock. It uses elapsed time rather than
+adding a fixed delay after each frame, so terminal rendering does not make the
+animation gradually fall behind the music. macOS uses `afplay`; Linux uses the
+first available player among `ffplay`, `mpv`, and VLC; Windows uses its built-in
+PowerShell media player.
+
+The demo clears the terminal and hides the cursor while it plays. If it is
+interrupted, restore the cursor with `printf '\033[?25h'`.
+
+This port is based on
+[OpenSauce04's v1 Brainfuck demo](https://github.com/OpenSauce04/BadAppleBF/releases/tag/v1).
+It uses fixed tape cells for common frame characters, keeping the complete
+Cunny source below 60 MB instead of doing a much larger literal token swap.
+The music is from the original shadow-art video: "Bad Apple!! feat. nomico" by
+Masayoshi Minoshima (Alstroemeria Records), with vocals by nomico. The animation
+was created by Anira. Those works remain the property of their respective
+rights holders and are not covered by this repository's MIT license.
+
 ## Build a static site
 
 A site uses this structure:
