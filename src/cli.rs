@@ -10,6 +10,14 @@ pub fn run() -> Result<(), String> {
     let program = arguments.first().map(String::as_str).unwrap_or("cunny");
 
     match arguments.as_slice() {
+        [_, flag] if flag == "--version" || flag == "-V" => {
+            println!("cunny {}", env!("CARGO_PKG_VERSION"));
+            Ok(())
+        }
+        [_, flag] if flag == "--help" || flag == "-h" => {
+            println!("{}", usage(program));
+            Ok(())
+        }
         [_, first, second, root] if first == "brat" && second == "correction" => {
             brat_correction(Path::new(root))
         }
@@ -70,6 +78,6 @@ fn build(root: &str) -> Result<(), String> {
 
 fn usage(program: &str) -> String {
     format!(
-        "usage:\n  {program} <file.cunny>\n  {program} --imouto <file.cunny>\n  {program} build <site-directory>\n  {program} brat correction <site-directory>"
+        "usage:\n  {program} <file.cunny>\n  {program} --imouto <file.cunny>\n  {program} build <site-directory>\n  {program} brat correction <site-directory>\n  {program} --help\n  {program} --version"
     )
 }

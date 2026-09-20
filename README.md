@@ -18,22 +18,48 @@ exactly three tokens.
 Cells are wrapping 8-bit values. Moving right grows the tape; moving left from
 its beginning is an error. Input sets the current cell to `0` at end-of-file.
 
+## Install
+
+On macOS or Linux, install the latest release with:
+
+```sh
+curl --proto '=https' --tlsv1.2 -LsSf \
+  https://raw.githubusercontent.com/itsuki680/cunny-lang/main/install.sh | sh
+```
+
+The installer puts `cunny` in `~/.local/bin`. If your shell cannot find it, add
+that directory to your `PATH`.
+
+On any system with Rust installed, including Windows, use Cargo:
+
+```sh
+cargo install --git https://github.com/itsuki680/cunny-lang --locked
+```
+
+Prebuilt archives and checksums are also available on the
+[latest release](https://github.com/itsuki680/cunny-lang/releases/latest).
+Check the installation with:
+
+```sh
+cunny --version
+```
+
 Run a program with:
 
 ```sh
-cargo run -- examples/a.cunny
+cunny examples/a.cunny
 ```
 
 Run it with the Imouto debugger to trace every instruction and tape state:
 
 ```sh
-cargo run -- --imouto examples/a.cunny
+cunny --imouto examples/a.cunny
 ```
 
 The echo example reads and writes one byte:
 
 ```sh
-printf Z | cargo run -- examples/echo.cunny
+printf Z | cunny examples/echo.cunny
 ```
 
 ## Build a static site
@@ -59,7 +85,7 @@ page. CSS, JavaScript, images, and other files in `assets/` are copied unchanged
 Build it with:
 
 ```sh
-cargo run -- build my-site
+cunny build my-site
 ```
 
 The result is written to `my-site/dist/`. Every build replaces the previous
@@ -68,14 +94,17 @@ The result is written to `my-site/dist/`. Every build replaces the previous
 Run the live development server with:
 
 ```sh
-cargo run -- brat correction my-site
+cunny brat correction my-site
 ```
 
 It serves the site at `http://127.0.0.1:3000`, rebuilds when a Cunny program or
 asset changes, and refreshes the browser automatically.
 
-Run the test suite with:
+## Development
+
+Build and test the project from source with:
 
 ```sh
 cargo test
+cargo clippy --all-targets -- -D warnings
 ```

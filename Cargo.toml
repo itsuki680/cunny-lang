@@ -2,6 +2,13 @@
 name = "cunny-lang"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.85"
+description = "An emoji-only esoteric language and static website generator"
+license = "MIT"
+repository = "https://github.com/itsuki680/cunny-lang"
+readme = "README.md"
+keywords = ["esolang", "interpreter", "static-site-generator", "emoji"]
+categories = ["compilers", "command-line-utilities"]
 
 [dependencies]
 
