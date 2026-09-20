@@ -11,7 +11,7 @@ jobs:
   verify:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Use stable Rust
         run: rustup update stable
       - name: Verify tag matches Cargo version
@@ -44,7 +44,7 @@ jobs:
             asset: cunny-windows-x86_64.zip
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Use stable Rust
         run: rustup update stable
       - name: Build release binary
@@ -64,7 +64,7 @@ jobs:
           Copy-Item target/release/cunny.exe -Destination package/
           Copy-Item README.md, LICENSE -Destination package/
           Compress-Archive -Path package/* -DestinationPath "${{ matrix.asset }}"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: release-${{ matrix.os }}
           path: ${{ matrix.asset }}
@@ -74,8 +74,8 @@ jobs:
     needs: build
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v5
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
         with:
           pattern: release-*
           path: dist
